@@ -1,1 +1,8 @@
 # infoMaps
+
+---
+
+## About the App
+
+---
+
