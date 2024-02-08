@@ -49,9 +49,11 @@ pip install requeriments.txt
 ## Resources  <a name = "resources"> </a>
 
 1. Google Maps
-2. Leaflet
+2. [Leaflet](https://leafletjs.com/)
 3. Apigee
 4. GKE
 5. Cloud Build?
 6. BigQuery? BigTable?
+7. [Open Data Comunidad de Madrid](https://datos.madrid.es/portal/site/egob/menuitem.9e1e2f6404558187cf35cf3584f1a5a0/?vgnextoid=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default)
+8. [Tripadvidor API](https://www.tripadvisor.com/developers)
 
