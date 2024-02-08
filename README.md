@@ -48,7 +48,7 @@ pip install requeriments.txt
 
 ## Resources  <a name = "resources"> </a>
 
-1. Google MAps
+1. Google Maps
 2. Leaflet
 3. Apigee
 4. GKE
