@@ -24,6 +24,7 @@ or monuments using google maps
 - javascript
 - Dockers
 - HTML 5
+- nuxt 3
 
 To install all dependencies we recomended the next command:
 
