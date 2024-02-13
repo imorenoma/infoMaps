@@ -35,6 +35,8 @@ pip install requeriments.txt
 
 ## How to run App <a name="runApp"></a>
 
+npm run dev
+
 
 ---
 ## App Schema <a name = "schema"> </a>
