@@ -120,7 +120,6 @@
   ],
   "exclude": [
     "../node_modules",
-    "../../node_modules",
     "../node_modules/.pnpm/nuxt@3.10.1_eslint@8.56.0_vite@5.1.1/node_modules/nuxt/node_modules",
     "../node_modules/.pnpm/@nuxt-awesome+theme@2.0.12_nuxt@3.10.1_vite@5.1.1_vue@3.4.18/node_modules/@nuxt-awesome/theme/modules",
     "../node_modules/.pnpm/@nuxt-awesome+theme@2.0.12_nuxt@3.10.1_vite@5.1.1_vue@3.4.18/node_modules/@nuxt-awesome/theme/modules/runtime/server",
