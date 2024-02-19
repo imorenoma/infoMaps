@@ -7,7 +7,7 @@
       Nosotros nos ocupamos de crear, o mejorar, la página de tu negocio.
     </p>
     <div class="flex mt-5">
-      <LandingLink href="#" styleName="inverted">¡Hablemos!</LandingLink>
+      <Link href="#" styleName="inverted">¡Hablemos!</Link>
     </div>
   </div>
 </template>

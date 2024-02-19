@@ -34,6 +34,9 @@ devDependencies:
   eslint:
     specifier: ^8.56.0
     version: 8.56.0
+  vue3-google-map:
+    specifier: ^0.19.0
+    version: 0.19.0(vue@3.4.18)
 
 packages:
 
@@ -850,6 +853,19 @@ packages:
     resolution: {integrity: sha512-+KpH+QxZU7O4675t3mnkQKcZZg56u+K/Ct2K+N2AZYNVK8kyeo/bI18tI8aPm3tvNNRyTWfj6s5tnGNlcbQRsA==}
     engines: {node: '>=14'}
     dev: false
+
+  /@googlemaps/js-api-loader@1.16.6:
+    resolution: {integrity: sha512-V8p5W9DbPQx74jWUmyYJOerhiB4C+MHekaO0ZRmc6lrOYrvY7+syLhzOWpp55kqSPeNb+qbC2h8i69aLIX6krQ==}
+    dependencies:
+      fast-deep-equal: 3.1.3
+    dev: true
+
+  /@googlemaps/markerclusterer@2.5.3:
+    resolution: {integrity: sha512-x7lX0R5yYOoiNectr10wLgCBasNcXFHiADIBdmn7jQllF2B5ENQw5XtZK+hIw4xnV0Df0xhN4LN98XqA5jaiOw==}
+    dependencies:
+      fast-deep-equal: 3.1.3
+      supercluster: 8.0.1
+    dev: true
 
   /@headlessui/vue@1.7.19(vue@3.4.18):
     resolution: {integrity: sha512-VFjKPybogux/5/QYGSq4zgG/x3RcxId15W8uguAJAjPBxelI23dwjOjTx/mIiMkM/Hd3rzFxcf2aIp56eEWRcA==}
@@ -2323,14 +2339,12 @@ packages:
       entities: 4.5.0
       estree-walker: 2.0.2
       source-map-js: 1.0.2
-    dev: false
 
   /@vue/compiler-dom@3.4.18:
     resolution: {integrity: sha512-24Eb8lcMfInefvQ6YlEVS18w5Q66f4+uXWVA+yb7praKbyjHRNuKVWGuinfSSjM0ZIiPi++QWukhkgznBaqpEA==}
     dependencies:
       '@vue/compiler-core': 3.4.18
       '@vue/shared': 3.4.18
-    dev: false
 
   /@vue/compiler-sfc@3.4.18:
     resolution: {integrity: sha512-rG5tqtnzwrVpMqAQ7FHtvHaV70G6LLfJIWLYZB/jZ9m/hrnZmIQh+H3ewnC5onwe/ibljm9+ZupxeElzqCkTAw==}
@@ -2344,14 +2358,12 @@ packages:
       magic-string: 0.30.7
       postcss: 8.4.35
       source-map-js: 1.0.2
-    dev: false
 
   /@vue/compiler-ssr@3.4.18:
     resolution: {integrity: sha512-hSlv20oUhPxo2UYUacHgGaxtqP0tvFo6ixxxD6JlXIkwzwoZ9eKK6PFQN4hNK/R13JlNyldwWt/fqGBKgWJ6nQ==}
     dependencies:
       '@vue/compiler-dom': 3.4.18
       '@vue/shared': 3.4.18
-    dev: false
 
   /@vue/devtools-api@6.5.1:
     resolution: {integrity: sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==}
@@ -2361,14 +2373,12 @@ packages:
     resolution: {integrity: sha512-7uda2/I0jpLiRygprDo5Jxs2HJkOVXcOMlyVlY54yRLxoycBpwGJRwJT9EdGB4adnoqJDXVT2BilUAYwI7qvmg==}
     dependencies:
       '@vue/shared': 3.4.18
-    dev: false
 
   /@vue/runtime-core@3.4.18:
     resolution: {integrity: sha512-7mU9diCa+4e+8/wZ7Udw5pwTH10A11sZ1nldmHOUKJnzCwvZxfJqAtw31mIf4T5H2FsLCSBQT3xgioA9vIjyDQ==}
     dependencies:
       '@vue/reactivity': 3.4.18
       '@vue/shared': 3.4.18
-    dev: false
 
   /@vue/runtime-dom@3.4.18:
     resolution: {integrity: sha512-2y1Mkzcw1niSfG7z3Qx+2ir9Gb4hdTkZe5p/I8x1aTIKQE0vY0tPAEUPhZm5tx6183gG3D/KwHG728UR0sIufA==}
@@ -2376,7 +2386,6 @@ packages:
       '@vue/runtime-core': 3.4.18
       '@vue/shared': 3.4.18
       csstype: 3.1.3
-    dev: false
 
   /@vue/server-renderer@3.4.18(vue@3.4.18):
     resolution: {integrity: sha512-YJd1wa7mzUN3NRqLEsrwEYWyO+PUBSROIGlCc3J/cvn7Zu6CxhNLgXa8Z4zZ5ja5/nviYO79J1InoPeXgwBTZA==}
@@ -2386,11 +2395,9 @@ packages:
       '@vue/compiler-ssr': 3.4.18
       '@vue/shared': 3.4.18
       vue: 3.4.18
-    dev: false
 
   /@vue/shared@3.4.18:
     resolution: {integrity: sha512-CxouGFxxaW5r1WbrSmWwck3No58rApXgRSBxrqgnY1K+jk20F6DrXJkHdH9n4HVT+/B6G2CAn213Uq3npWiy8Q==}
-    dev: false
 
   /@vueuse/core@10.7.2(vue@3.4.18):
     resolution: {integrity: sha512-AOyAL2rK0By62Hm+iqQn6Rbu8bfmbgaIMXcE3TSr7BdQ42wnSFlwIdPjInO62onYsEMK/yDMU8C6oGfDAtZ2qQ==}
@@ -3413,7 +3420,6 @@ packages:
 
   /csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
-    dev: false
 
   /debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -3679,7 +3685,6 @@ packages:
   /entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
-    dev: false
 
   /env-paths@2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
@@ -4921,6 +4926,10 @@ packages:
     resolution: {integrity: sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==}
     engines: {'0': node >= 0.2.0}
     dev: false
+
+  /kdbush@4.0.2:
+    resolution: {integrity: sha512-WbCVYJ27Sz8zi9Q7Q0xHC+05iwkm3Znipc2XTlrnJbsHMYktW4hPhXUE8Ys1engBrvffoSCqbil1JQAa7clRpA==}
+    dev: true
 
   /keygrip@1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}
@@ -7784,6 +7793,12 @@ packages:
       ts-interface-checker: 0.1.13
     dev: false
 
+  /supercluster@8.0.1:
+    resolution: {integrity: sha512-IiOea5kJ9iqzD2t7QJq/cREyLHTtSmUT6gQsweojg9WH2sYJqZK9SswTu6jrscO6D1G5v5vYZ9ru/eq85lXeZQ==}
+    dependencies:
+      kdbush: 4.0.2
+    dev: true
+
   /supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
@@ -8718,6 +8733,18 @@ packages:
       vue: 3.4.18
     dev: false
 
+  /vue3-google-map@0.19.0(vue@3.4.18):
+    resolution: {integrity: sha512-AnKpDZSwU54pCJXFAMRB9oGt1K+KxfTAOF1UvINxwjMF8Zl6RXbKxRXcQzErBDSBM6qA5baPRmTSGdZDlD4/Fw==}
+    engines: {node: '>=16.11.0'}
+    peerDependencies:
+      vue: ^3
+    dependencies:
+      '@googlemaps/js-api-loader': 1.16.6
+      '@googlemaps/markerclusterer': 2.5.3
+      fast-deep-equal: 3.1.3
+      vue: 3.4.18
+    dev: true
+
   /vue@3.4.18:
     resolution: {integrity: sha512-0zLRYamFRe0wF4q2L3O24KQzLyLpL64ye1RUToOgOxuWZsb/FhaNRdGmeozdtVYLz6tl94OXLaK7/WQIrVCw1A==}
     peerDependencies:
@@ -8731,7 +8758,6 @@ packages:
       '@vue/runtime-dom': 3.4.18
       '@vue/server-renderer': 3.4.18(vue@3.4.18)
       '@vue/shared': 3.4.18
-    dev: false
 
   /watchpack@2.4.0:
     resolution: {integrity: sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==}

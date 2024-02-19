@@ -1,15 +1,13 @@
 <script setup>
-definePageMeta({
-  layout: "landing",
-});
+
 </script>
 
 <template>
-  <LandingContainer>
-    <LazyLandingNavbar></LazyLandingNavbar>
-    <LandingHero></LandingHero>
+  <ContainerComponent>
+    <LazyNavbarComponent></LazyNavbarComponent>
+    <HeroComponent></HeroComponent>
 
-    <LandingLogos></LandingLogos>
-    <LandingCta></LandingCta>
-  </LandingContainer>
+    <LogosComponent></LogosComponent>
+    <CtaComponent></CtaComponent>
+  </ContainerComponent>
 </template>

@@ -1,8 +1,4 @@
 <script setup>
-definePageMeta({
-  layout: "landing",
-});
-
 const pricing = [
   {
     name: "Personal",
@@ -64,17 +60,17 @@ const pricing = [
 </script>
 
 <template>
-  <LandingContainer>
-    <LazyLandingNavbar></LazyLandingNavbar>
-    <LandingSectionhead>
+  <ContainerComponent>
+    <LazyNavbarComponent></LazyNavbarComponent>
+    <Sectionhead>
       <template v-slot:title>Pricing</template>
       <template v-slot:desc
         >Simple & Predictable pricing. No Surprises.</template
       >
-    </LandingSectionhead>
+    </Sectionhead>
 
     <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg mt-12">
-      <LandingPricing v-for="item of pricing" :plan="item" />
+      <Pricing v-for="item of pricing" :plan="item" />
     </div>
-  </LandingContainer>
+  </ContainerComponent>
 </template>

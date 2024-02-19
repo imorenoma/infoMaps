@@ -21,11 +21,11 @@
         tenemos justo lo que buscas.
       </p>
       <div class="mt-6 flex flex-col sm:flex-row gap-3">
-        <LandingLink
+        <Link
           href="/"
           target="_blank"
           rel="noopener"
-          >Comienza a explorar</LandingLink
+          >Comienza a explorar</Link
         >
 
       </div>

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+
 const { awesome } = useAppConfig();
 
 useHead({
