@@ -1,4 +1,6 @@
 <script setup>
+import { RegistrationPopup } from '#build/components';
+
 const menuitems = [
   {
     title: "Explorar",
@@ -30,6 +32,7 @@ const open = ref(false);
 }
 </style>
 <template>
+  <RegistrationPopup ref="registrationPopup" />
   <ContainerComponent>
     <header class="flex flex-col lg:flex-row justify-between items-center my-5">
       <div class="flex w-full lg:w-auto items-center justify-between">
@@ -85,7 +88,7 @@ const open = ref(false);
       </nav>
       <div>
         <div class="hidden lg:flex items-center gap-4">
-          <a href="#">Register</a>
+          <a href="#" @click="openRegistrationPopup" class="flex items-center">Register</a>
           <a href="#">Log in</a>
           <Link href="#" size="md">Sign up</Link>
         </div>
@@ -93,3 +96,18 @@ const open = ref(false);
     </header>
   </ContainerComponent>
 </template>
+
+<script>
+import RegistrationPopup from './RegistrationPopup.vue';
+
+export default {
+  components: {
+    RegistrationPopup
+  },
+  methods: {
+    openRegistrationPopup() {
+      this.$refs.registrationPopup.openPopup();
+    }
+  }
+};
+</script>
