@@ -43,6 +43,7 @@
             radius: this.radius
           });
           console.log(response.data);
+          this.$emit('close-popup')
         } catch (error) {
           console.error(error);
         }
