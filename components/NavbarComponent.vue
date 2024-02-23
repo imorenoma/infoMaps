@@ -85,6 +85,7 @@ const open = ref(false);
       </nav>
       <div>
         <div class="hidden lg:flex items-center gap-4">
+          <a href="#">Register</a>
           <a href="#">Log in</a>
           <Link href="#" size="md">Sign up</Link>
         </div>
