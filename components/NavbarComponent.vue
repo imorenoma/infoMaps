@@ -17,6 +17,7 @@ const menuitems = [
     title: "Contacto",
     path: "/contact",
   },
+  
 ];
 
 const open = ref(false);
@@ -87,6 +88,7 @@ const open = ref(false);
       </nav>
       <div>
         <div class="hidden lg:flex items-center gap-4">
+          <button  @click="Register">Registrarse</button>
           <Button>
           <a href="/login">Entrar</a>
           <!-- <Link href="#" size="md">Sign up</Link> -->
@@ -96,5 +98,4 @@ const open = ref(false);
     </header>
   </ContainerComponent>
 </template>
-
 

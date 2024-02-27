@@ -22,6 +22,7 @@
   </template>
   
   <script>
+  import bcrypt from 'bcryptjs';
   import axios from 'axios';
   
   export default {
@@ -34,14 +35,16 @@
     },
     methods: {
       async register() {
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(this.password, saltRounds);
         try {
           const response = await axios.post('http://localhost:5000/app/register', {
             email: this.email,
-            password: this.password,
+            password: hashedPassword,
             radius: this.radius,
           });
   
-          if (response.status === 201) {
+          if (response.status === 200) {
             this.$router.push('/login');
           }
         } catch (error) {
