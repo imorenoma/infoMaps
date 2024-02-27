@@ -88,7 +88,7 @@ const open = ref(false);
       </nav>
       <div>
         <div class="hidden lg:flex items-center gap-4">
-          <a href="#" @click="openRegistrationPopup" class="flex items-center">Register</a>
+          <a href="#">Register</a>
           <a href="#">Log in</a>
           <Link href="#" size="md">Sign up</Link>
         </div>
@@ -97,17 +97,4 @@ const open = ref(false);
   </ContainerComponent>
 </template>
 
-<script>
-import RegistrationPopup from './RegistrationPopup.vue';
 
-export default {
-  components: {
-    RegistrationPopup
-  },
-  methods: {
-    openRegistrationPopup() {
-      this.$refs.registrationPopup.openPopup();
-    }
-  }
-};
-</script>
