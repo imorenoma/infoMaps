@@ -54,7 +54,7 @@ const team = [
       </p>
     </div>
     <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
-      <div v-for="item of team" class="group">
+      <div v-for="item of team" :key="item.id" class="group">
         <div class="w-full aspect-square">
           <img
             :src="item.avatar.src"

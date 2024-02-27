@@ -1,6 +1,5 @@
 <script setup>
-import { RegistrationPopup } from '#build/components';
-
+import { ref } from 'vue';
 const menuitems = [
   {
     title: "Explorar",
@@ -70,7 +69,7 @@ const open = ref(false);
         :class="{ block: open, hidden: !open }"
       >
         <ul class="flex flex-col lg:flex-row lg:gap-3">
-          <li v-for="item of menuitems">
+          <li v-for="item of menuitems" v-bind:key="item.id">
             <a
               :href="item.path"
               class="flex lg:px-3 py-2 text-gray-600 hover:text-gray-900"
@@ -80,17 +79,18 @@ const open = ref(false);
           </li>
         </ul>
         <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="#" styleName="muted" block size="md"
-            >Log in</Link
+          <Link href="/login" styleName="muted" block size="md"
+            >Entrar</Link
           >
-          <Link href="#" size="md" block>Sign up</Link>
+          <!-- <Link href="#" size="md" block>Sign up</Link> -->
         </div>
       </nav>
       <div>
         <div class="hidden lg:flex items-center gap-4">
-          <a href="#">Register</a>
-          <a href="#">Log in</a>
-          <Link href="#" size="md">Sign up</Link>
+          <Button>
+          <a href="/login">Entrar</a>
+          <!-- <Link href="#" size="md">Sign up</Link> -->
+        </Button>
         </div>
       </div>
     </header>
