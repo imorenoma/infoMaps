@@ -1,35 +1,35 @@
 <script setup>
 
-const TeamImg1 = "https://source.unsplash.com/IF9TK5Uy-KI";
-const TeamImg2 = "https://source.unsplash.com/iEEBWgY_6lA";
-const TeamImg3 = "https://source.unsplash.com/ZHvM3XIOHoE";
+const TeamImg1 = "https://upload.wikimedia.org/wikipedia/commons/1/1c/Crystal_128_penguin.png";
+const TeamImg2 = "https://upload.wikimedia.org/wikipedia/commons/1/1c/Crystal_128_penguin.png";
+const TeamImg3 = "https://upload.wikimedia.org/wikipedia/commons/1/1c/Crystal_128_penguin.png";
 
 const team = [
   {
-    name: "Personaje 1",
-    title: "Namber uan",
+    name: "FontEnd Developer",
+    title: "Alvaro",
     avatar: {
       src: TeamImg1,
-      width: 480,
-      height: 560,
+      width: 100,
+      height: 100,
     },
   },
   {
-    name: "Personaje 2",
-    title: "Namber tchu",
+    name: "Backend Developer",
+    title: "Iván",
     avatar: {
       src: TeamImg2,
-      width: 580,
-      height: 580,
+      width: 100,
+      height: 100,
     },
   },
   {
-    name: "Personaje 3",
-    title: "Namber zri",
+    name: "FullStack Developer",
+    title: "Ernest",
     avatar: {
       src: TeamImg3,
-      width: 580,
-      height: 580,
+      width: 100,
+      height: 100,
     },
   },
 ];
