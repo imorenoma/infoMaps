@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue';
+import VueRouter from 'vue-router';
+import RegisterPage from '/components/Register';
 const menuitems = [
   {
     title: "Explorar",
@@ -20,6 +22,8 @@ const menuitems = [
   
 ];
 
+
+
 const open = ref(false);
 </script>
 <style>
@@ -32,6 +36,7 @@ const open = ref(false);
 }
 </style>
 <template>
+  
   <ContainerComponent>
     <header class="flex flex-col lg:flex-row justify-between items-center my-5">
       <div class="flex w-full lg:w-auto items-center justify-between">
