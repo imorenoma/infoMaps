@@ -32,7 +32,6 @@ const open = ref(false);
 }
 </style>
 <template>
-  <RegistrationPopup ref="registrationPopup" />
   <ContainerComponent>
     <header class="flex flex-col lg:flex-row justify-between items-center my-5">
       <div class="flex w-full lg:w-auto items-center justify-between">
@@ -80,15 +79,16 @@ const open = ref(false);
           </li>
         </ul>
         <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="/login" styleName="muted" block size="md"
-            >Entrar</Link
-          >
+          <Link href="/login" styleName="muted" block size="md">Entrar</Link>
           <!-- <Link href="#" size="md" block>Sign up</Link> -->
         </div>
       </nav>
       <div>
         <div class="hidden lg:flex items-center gap-4">
-          <button  @click="Register">Registrarse</button>
+          <a href="/register">
+            <button>Registrarse</button>
+          </a>
+          
           <Button>
           <a href="/login">Entrar</a>
           <!-- <Link href="#" size="md">Sign up</Link> -->
