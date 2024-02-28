@@ -1,8 +1,8 @@
 
 import type { CustomAppConfig } from 'nuxt/schema'
 import type { Defu } from 'defu'
-import cfg0 from "C:/Users/alves/infoMaps/app.config"
-import cfg1 from "C:/Users/alves/infoMaps/node_modules/.pnpm/@nuxt-awesome+theme@2.0.12_nuxt@3.10.1_vite@5.1.1_vue@3.4.18/node_modules/@nuxt-awesome/theme/app.config"
+import cfg0 from "C:/Projects/citySights/infoMaps/app.config"
+import cfg1 from "C:/Projects/citySights/infoMaps/node_modules/.pnpm/@nuxt-awesome+theme@2.0.12_nuxt@3.10.1_typescript@5.3.3_vite@5.1.1_vue@3.4.18/node_modules/@nuxt-awesome/theme/app.config"
 
 declare const inlineConfig = {
   "nuxt": {

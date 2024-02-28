@@ -15,7 +15,7 @@ if (import.meta.hot) {
   })
 }
 
-import cfg0 from "C:/Users/alves/infoMaps/app.config.ts"
-import cfg1 from "C:/Users/alves/infoMaps/node_modules/.pnpm/@nuxt-awesome+theme@2.0.12_nuxt@3.10.1_vite@5.1.1_vue@3.4.18/node_modules/@nuxt-awesome/theme/app.config.ts"
+import cfg0 from "C:/Projects/citySights/infoMaps/app.config.ts"
+import cfg1 from "C:/Projects/citySights/infoMaps/node_modules/.pnpm/@nuxt-awesome+theme@2.0.12_nuxt@3.10.1_typescript@5.3.3_vite@5.1.1_vue@3.4.18/node_modules/@nuxt-awesome/theme/app.config.ts"
 
 export default /*@__PURE__*/ defuFn(cfg0, cfg1, inlineConfig)
