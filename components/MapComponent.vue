@@ -6,25 +6,47 @@ export default {
         return {
             google_maps_url: '',
             places: [],
+            selectedFilter: 'todos',
             map: null,
-            markers: null
+            markers: []
         }
     },
     data: function () {
-        /*
-        return {
-            google_maps_url: '',
-            places: [],
-            map: null,
-            markers:null
 
-        }*/
+    },
+    computed: {
+
+        filteredPlaces() {
+            if (this.selectedFilter === 'todos') {
+                return this.places;
+            }
+            return this.places.filter(place => place.type === this.selectedFilter);
+        },
     },
     async created() {
-        const gResponse = await fetch("http://localhost:5000/citysights");
-        const gObject = await gResponse.json();
-        this.google_maps_url = gObject.google_maps_url;
-
+        //const gResponse = await fetch("http://localhost:5000/citysights");
+        // const gObject = await gResponse.json();
+        this.google_maps_url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC-xhrnV-K304RreVro53FFhm6KIjKw3rY";
+        this.places = [
+            {
+                id:1,
+                address: "Otra calle de getafe",
+                description: "Un sitio muy divertido",
+                price: "Gratis",
+                position: { lat: 40.294133014703085, lng: -3.74623766502045 },
+                title: "Sitio de ocio A",
+                type: "casa",
+            },
+            {
+                id:2,
+                address: "Calle Getafe algo",
+                description: "Un sitio poco divertido",
+                price: "$$",
+                position: { lat: 40.29788054770768, lng: -3.741920123159409 },
+                title: "Sitio de ocio B",
+                type: "biblioteca",
+            },
+        ];
         // this.places = gObject.places;
         // this.initMap();
     },
@@ -33,6 +55,13 @@ export default {
 
         await this.initGoogleMaps();
 
+    },
+    watch: {
+        selectedFilter() {
+            // Update markers when the filter changes
+            this.clearMarkers();
+            this.addMarkers(this.map);
+        }
     },
     methods: {
         async initGoogleMaps() {
@@ -56,11 +85,10 @@ export default {
                     script.onload = resolve;
                     script.onerror = () => {
                         if (retryCount > 0) {
-                          //  console.error(`Failed to load Google Maps script, retrying... (${retryCount})`);
                             setTimeout(() => {
                                 document.head.removeChild(script); // Remove the failed script
                                 this.loadGoogleMapsScript(retryCount - 1).then(resolve).catch(reject);
-                            }, 2000); // Wait for 2 seconds before retrying
+                            }, 2000);
                         } else {
                             reject(new Error('Failed to load the Google Maps script after multiple attempts'));
                         }
@@ -77,10 +105,10 @@ export default {
                     center: { lat: 40.30861111, lng: -3.68444444 },
                     zoom: 12
                 });
-                // const {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
+                this.filteredPlaces = this.places;
                 this.addMarkers(this.map);
             } else {
-               // console.error("Google Maps API is not loaded.");
+                // console.error("Google Maps API is not loaded.");
             }
         },
         buildContent(place) {
@@ -131,27 +159,9 @@ export default {
                     icon: iconBase + "info-i_maps.png",
                 },
             };
-            let places = [
-                {
-                    address: "Test A",
-                    description: "Un sitio muy divertido",
-                    price: "Gratis",
-                    position: { lat: 40.294133014703085, lng: -3.74623766502045 },
-                    title:"Sitio de ocio A",
-                    type: "home",
-                },
-                {
-                    address: "Calle Getafe algo",
-                    description: "Un sitio poco divertido",
-                    price: "$$",
-                    position: { lat: 40.29788054770768, lng: -3.741920123159409 },
-                    title:"Sitio de ocio B",
-                    type: "home",
-                },
-            ];
             const vm = this;
 
-            for (const place of places) {
+            for (const  place of this.filteredPlaces) {
                 const content = this.buildContent(place);
                 const marker = new AdvancedMarkerElement({
                     position: place.position,
@@ -163,31 +173,70 @@ export default {
                 marker.addListener("click", () => {
                     vm.toggleHighlight(marker, place);
                 });
+                marker.placeId = place.id;
+                this.markers.push(marker);
             }
+        },
+
+        filterPlaces(type) {
+            console.log("Filtrando sitios...");
+            // Example filtering function by type
+            // You can extend this to filter by other parameters
+            const filteredPlaces = this.places.filter(place => place.type === type);
+            // Clear existing markers and add new ones based on the filter
+            // This is a simplistic approach; optimizations may be needed for performance
+            this.clearMarkers();
+            //this.places = filteredPlaces;
+            this.addMarkers();
+        },
+        centerMapOnMarker(place) {
+            console.log("Centrando en el mapa...");
+            const marker = this.markers.find(marker => marker.placeId === place.id);
+            if (marker) {
+                this.map.panTo(marker.position); 
+                this.map.setZoom(14); 
+                this.toggleHighlight(marker)
+            }  else {
+        console.error("Marker not found for place with id:", place.id);
+    }
+        },
+        clearMarkers() {
+            console.log("Despejando filtros...");
+            if (this.markers) {
+                for (const marker of this.markers) {
+                    marker.setMap(null); // Removes the marker from the map
+                }
+            }
+            this.markers = []; // Reset the markers array
         }
     },
 
-    filterPlaces(type) {
-        // Example filtering function by type
-        // You can extend this to filter by other parameters
-        const filteredPlaces = this.places.filter(place => place.type === type);
-        // Clear existing markers and add new ones based on the filter
-        // This is a simplistic approach; optimizations may be needed for performance
-        this.clearMarkers();
-        this.places = filteredPlaces;
-        this.addMarkers();
-    },
-    clearMarkers() {
-        // Implement logic to remove all markers from the map
-        // This might involve keeping track of all marker instances in an array
-    }
 }
 </script>
 <template>
-    <div id="googlemap" style="height: 600px;">
-
+    <div>
+        <div id="googlemap" style="height: 600px;"></div>
+        <div>
+            <!-- Filters -->
+            <select v-model="selectedFilter">
+                <option value="todos">Todos</option>
+                <option value="casa">Casa</option>
+                <option value="biblioteca">Bibliotecas</option>
+            </select>
+        </div>
+        <table class="table-fixed border-separate border-spacing-2 border border-slate-500">
+            <thead>
+            <tr>
+            <th class="border border-slate-600">Título </th>
+            <th class="border border-slate-600">Dirección</th>
+            </tr>
+        </thead>
+            <tr v-for="(place, index) in filteredPlaces" :key="index" @click="centerMapOnMarker(place)"  class=" hover:bg-sky-700">
+                <td class="border border-slate-700">{{ place.title }}</td>
+                <td class="border border-slate-700">{{ place.address }}</td>
+            </tr>
+        </table>
     </div>
-    <!-- Add UI elements for filtering, e.g., buttons or dropdowns calling filterPlaces() -->
 </template>
 
 <style>
@@ -397,37 +446,3 @@ body {
     border-top: 9px solid var(--shop-color);
 }
 </style> 
-<!--
-    
-<script lang="js">
-export default {
-    components: {
-    },
-    data: function(){
-        return {
-            greeting: 'Hello, Vue!',
-        }
-    },
-    created: async function(){
-        const gResponse = await fetch("http://localhost:5000/citysights");
-        const gObject = await gResponse.json();
-        this.google_maps_url = gObject.google_maps_url;
-    }
-}
-</script>
-<template>
-
-    <div id="googlemap">
-      <iframe
-        width="100%"
-        height="600"
-        frameborder="0"
-        style="border:0"
-        :src=" google_maps_url "
-        allowfullscreen
-    ></iframe>
-    </div>
-    
-  </template>
-  
--->
