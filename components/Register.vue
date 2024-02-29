@@ -18,11 +18,11 @@
   
         <button type="submit">Registrarse</button>
       </form>
-    </div>
-  </template>
+  </div>
+</template>
   
-  <script>
-  import bcrypt from 'bcryptjs';
+<script>
+  import bcrypt from 'bcrypt';
   import axios from 'axios';
   
   export default {

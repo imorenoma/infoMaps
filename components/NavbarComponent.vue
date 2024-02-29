@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import VueRouter from 'vue-router';
 import RegisterPage from '/components/Register';
+import { Button } from '#build/components';
 const menuitems = [
   {
     title: "Explorar",
@@ -86,14 +87,17 @@ const open = ref(false);
         <div class="lg:hidden flex items-center mt-3 gap-4">
           <Link href="/login" styleName="muted" block size="md">Entrar</Link>
           <!-- <Link href="#" size="md" block>Sign up</Link> -->
+          <!-- <Link href="/register" size="md" block>Registrarse</Link> -->
         </div>
       </nav>
       <div>
-        <div class="hidden lg:flex items-center gap-4">
-          <a href="/register">
+        <div class="hidden lg:flex items-center gap-4">          
+          <!-- <a href="/register">
             <button>Registrarse</button>
-          </a>
-          
+          </a>          -->
+          <Button>
+            <!-- <a href="/register">Registarse</a> -->
+          </Button>
           <Button>
           <a href="/login">Entrar</a>
           <!-- <Link href="#" size="md">Sign up</Link> -->
