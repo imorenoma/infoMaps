@@ -2,6 +2,6 @@
   <ContainerComponent>
     <LazyNavbarComponent></LazyNavbarComponent>
     <MapComponent></MapComponent>
-    <CtaComponent></CtaComponent>>
+    <CtaComponent></CtaComponent>
   </ContainerComponent>
 </template>

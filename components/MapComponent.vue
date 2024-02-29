@@ -25,15 +25,20 @@ export default {
             }
             else{
 
-            return this.places.filter(place => place.type === this.selectedFilter);
+            return this.places.filter(place => place.address['postal-code'] === this.selectedFilter);
             }
         },
+        uniquePostalCodes() {
+        const postalCodes = this.places.map(place => place.address['postal-code']);
+        return [...new Set(postalCodes)];
+    },
     },
     async created() {
         //const gResponse = await fetch("http://localhost:5000/citysights");
         // const gObject = await gResponse.json();
         this.google_maps_url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC-xhrnV-K304RreVro53FFhm6KIjKw3rY";
-        this.myPlaces =  [
+     //  this.places = await fetch("http://localhost:5000/get-madrid-museum-data");
+         this.places =  [
 	
 	{
 		"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/6017808-casa-museo-fuente-rey.json",
@@ -122,7 +127,240 @@ export default {
 			"organization-name": "Casita - Museo del Ratón Pérez"
 		}
 	},
+    {
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/2069-centro-cultural-corrala-museo-artes-tradiciones-populares.json",
+		"@type": "https://datos.madrid.es/egob/kos/entidadesYorganismos/Museos",
+		"id": "2069",
+		"title": "Centro Cultural La Corrala. Museo de Artes y Tradiciones Populares",
+		"relation": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=bfa48ab43d6bb410VgnVCM100000171f5a0aRCRD&vgnextoid=5c39ef4d7f71c010VgnVCM1000000b205a0aRCRD",		
+		"address": {
+			"district": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro"
+			},
+			"area": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro/Barrio/Embajadores"
+			},
+			"locality": "MADRID",			
+			"postal-code": "28005",
+			"street-address": "CALLE CARLOS ARNICHES 3"
+		},
+		"location": {
+			"latitude": 40.408827275648434,
+			"longitude": -3.7083241323093614
+		},
+		"organization": {
+			"organization-desc": "  Metro: La Latina (línea 5)  Bus: 002, 17, 18, 23, 35, 60.  Bicimad: Estaciones 39 (plaza de la Cebada, 16), 45 (glorieta de la Puerta de Toledo, 1), 44 (calle Mesón de Paredes, 35).",
+			"accesibility": "3",
+			"schedule": "Lunes a viernes de 10 a 20 horas. Sábados de 10 a 14 horas. Cerrado domingos, festivos y mes de agosto, 24 y 31 diciembre.",
+			"services": "Las visitas individuales (grupos inferiores a 7 personas) no necesitan reserva previa. Reservas (Grupos de 8 a 20 personas máximo).",
+			"organization-name": "Centro Cultural La Corrala. Museo de Artes y Tradiciones Populares"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/6469186-ermita-san-antonio-florida-museo-.json",
+		"@type": "https://datos.madrid.es/egob/kos/entidadesYorganismos/MonumentosEdificiosArtisticos",
+		"id": "6469186",
+		"title": "Ermita de San Antonio de la Florida (Museo)",
+		"relation": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=bfa48ab43d6bb410VgnVCM100000171f5a0aRCRD&vgnextoid=75950204770e7310VgnVCM2000000c205a0aRCRD",		
+		"address": {
+			"district": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moncloa-Aravaca"
+			},
+			"area": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moncloa-Aravaca/Barrio/CasaCampo"
+			},
+			"locality": "MADRID",			
+			"postal-code": "28008",
+			"street-address": "GLORIETA SAN ANTONIO DE LA FLORIDA 5"
+		},
+		"location": {
+			"latitude": 40.425256682855846,
+			"longitude": -3.725725718176111
+		},
+		"organization": {
+			"organization-desc": "Ermita dedicada a San Antonio de Padua y pequeño museo. Las pinturas murales que la decoran son de Francisco de Goya. Alberga los restos mortales del artista desde 1919. Para preservar sus pinturas, en 1929 se trasladó el culto a una ermita gemela construida a su lado, dejando el edificio original como museo.  Metro: Príncipe Pío (líneas 5, 10 y ramal Ópera - Príncipe Pío)  Bus: 41, 46 y 75 (Intercambiador Príncipe Pío)  Renfe: Príncipe Pío  BICIMAD: Estación 161 (Paseo de la Florida 8)",
+			"accesibility": "2,6",
+			"schedule": "General   De martes a domingos de 9:30 a 20 horas.   Verano (del 15 de junio al 15 de septiembre)   De martes a viernes de 9:30 a 14 horas y de 15 a 19 horas. Sábados y domingos de 9:30 a 19 horas.   Cerrado:  lunes (incluidos festivos), 1 y 6 de enero, 1 de mayo, 24, 25 y 31 de diciembre.  Último pase de visita: 20 minutos antes del cierre (el desalojo de las salas comenzará 10 minutos antes) Este horario y la apertura de salas pueden sufrir modificaciones.",
+			"services": "Tienda, en la que se pueden adquirir las guías y publicaciones sobre la ermita editadas por el Museo y otros organismos públicos, así como catálogos y publicaciones de instituciones culturales del Ayuntamiento de Madrid.",
+			"organization-name": "Ermita de San Antonio de la Florida (Museo)"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/58353-espacio-fundacion-telefonica.json",
+		"@type": "https://datos.madrid.es/egob/kos/entidadesYorganismos/Museos",
+		"id": "58353",
+		"title": "Espacio Fundación Telefónica",
+		"relation": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=bfa48ab43d6bb410VgnVCM100000171f5a0aRCRD&vgnextoid=87748ed67151c010VgnVCM2000000c205a0aRCRD",		
+		"address": {
+			"district": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro"
+			},
+			"area": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro/Barrio/Universidad"
+			},
+			"locality": "MADRID",			
+			"postal-code": "28004",
+			"street-address": "CALLE FUENCARRAL 3"
+		},
+		"location": {
+			"latitude": 40.42042493125648,
+			"longitude": -3.701594573150366
+		},
+		"organization": {
+			"organization-desc": "  Metro: Gran Vía (líneas 1 y 5).  Bus: 001, 002, 1, 2, 3, 46, 74, 146.  Bicimad: Estaciones 211 (calle Desengaño, 1), 210 (calle Tres Cruces, 7), 18 (plaza de Pedro Zerolo, 1).      Aparcamientos: Barco 1 (88), Calle Barco; Pedro Zerolo (71), plaza Pedro Zerolo sin número; plaza del Carmen (8).",
+			"accesibility": "1",
+			"schedule": "Martes, miércoles, jueves y viernes de 11 a 20 horas. Sábados, domingo y festivos, de 11 a 21 horas. Cerrado al público todos los lunes y los días 25 de diciembre y 1 y 6 de enero.",
+			"services": "",
+			"organization-name": "Espacio Fundación Telefónica"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/103331-casa-encendida-fundacion-montemadrid.json",
+		"@type": "https://datos.madrid.es/egob/kos/entidadesYorganismos/MonumentosEdificiosArtisticos",
+		"id": "103331",
+		"title": "La Casa Encendida de la Fundación Montemadrid",
+		"relation": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=bfa48ab43d6bb410VgnVCM100000171f5a0aRCRD&vgnextoid=c27f8899fc81c010VgnVCM1000000b205a0aRCRD",		
+		"address": {
+			"district": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro"
+			},
+			"area": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro/Barrio/Embajadores"
+			},
+			"locality": "MADRID",			
+			"postal-code": "28012",
+			"street-address": "RONDA VALENCIA 2"
+		},
+		"location": {
+			"latitude": 40.40596221830597,
+			"longitude": -3.6997720739017033
+		},
+		"organization": {
+			"organization-desc": "Edificio de carácter monumental. De estilo neomudéjar, fue diseñado por el arquitecto Fernando Arbós e inaugurado en el año 1913. Cuenta con más de 6000 metros cuadrados de instalaciones divididas en 4 plantas y una azotea. Centro social y cultural.  Metro: Embajadores (línea 3)  Bus: 119, 27, 34, 36, 41, C03, C2, C1, 148, 60, 75, M1  Cercanías Renfe: Embajadores (línea C5)  Bicimad: Estación 49 (ronda de Atocha, 34)  Aparcamiento: Garaje Amparo (75), calle Amparo",
+			"accesibility": "1,4,6",
+			"schedule": "De martes a domingo de 10 a 22 horas.",
+			"services": "Biblioteca,mediateca, hemeroteca, laboratorio de radio, fotográfico y multimedia Cafetería Terraza &amp;ndash; café bar Ecotienda solidaria Visitas guiadas",
+			"organization-name": "La Casa Encendida de la Fundación Montemadrid"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/5873478-museo-abc.json",
+		"@type": "https://datos.madrid.es/egob/kos/entidadesYorganismos/Museos",
+		"id": "5873478",
+		"title": "Museo ABC",
+		"relation": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=bfa48ab43d6bb410VgnVCM100000171f5a0aRCRD&vgnextoid=f0103fee6537c210VgnVCM1000000b205a0aRCRD",		
+		"address": {
+			"district": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro"
+			},
+			"area": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro/Barrio/Universidad"
+			},
+			"locality": "MADRID",			
+			"postal-code": "28015",
+			"street-address": "CALLE AMANIEL 29 -31"
+		},
+		"location": {
+			"latitude": 40.42741121610518,
+			"longitude": -3.709539260414957
+		},
+		"organization": {
+			"organization-desc": "Centro de arte, dibujo e ilustración.  Metro: San Bernardo (líneas 2, 4), Noviciado (línea 2), Ventura Rodríguez (línea 3), Plaza de España (líneas 3, 10)  Bus: M2, C1, C3, 1, 2, 3, 21, 44, 133, 147, 001, 002   Bicimad: Estación 13 (calle Conde Duque 22)",
+			"accesibility": "1",
+			"schedule": "Consultar.",
+			"services": "",
+			"organization-name": "Museo ABC"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/2067-museo-africano-misioneros-combonianos.json",
+		"@type": "https://datos.madrid.es/egob/kos/entidadesYorganismos/Museos",
+		"id": "2067",
+		"title": "Museo Africano Misioneros Combonianos",
+		"relation": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=bfa48ab43d6bb410VgnVCM100000171f5a0aRCRD&vgnextoid=6ab8ef4d7f71c010VgnVCM1000000b205a0aRCRD",		
+		"address": {
+			"district": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/CiudadLineal"
+			},
+			"area": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/CiudadLineal/Barrio/SanJuanBautista"
+			},
+			"locality": "MADRID",			
+			"postal-code": "28043",
+			"street-address": "CALLE ARTURO SORIA 101"
+		},
+		"location": {
+			"latitude": 40.44946738556641,
+			"longitude": -3.651489872602189
+		},
+		"organization": {
+			"organization-desc": "  Bus: 11, 70, 114, 122, 115, 200.",
+			"accesibility": "3",
+			"schedule": "Grupos con cita previa telefónica o en la su web : de lunes a viernes de 9:30 a 13:30 horas.  Individuales: Visitas guiadas sin cita previa los domingos a las 11:30 horas.",
+			"services": "",
+			"organization-name": "Museo Africano Misioneros Combonianos"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/2050-museo-arqueologico-nacional.json",
+		"@type": "https://datos.madrid.es/egob/kos/entidadesYorganismos/Museos",
+		"id": "2050",
+		"title": "Museo Arqueológico Nacional",
+		"relation": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=bfa48ab43d6bb410VgnVCM100000171f5a0aRCRD&vgnextoid=8fd8ef4d7f71c010VgnVCM1000000b205a0aRCRD",		
+		"address": {
+			"district": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Salamanca"
+			},
+			"area": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Salamanca/Barrio/Recoletos"
+			},
+			"locality": "MADRID",			
+			"postal-code": "28001",
+			"street-address": "CALLE SERRANO 13"
+		},
+		"location": {
+			"latitude": 40.4232789604228,
+			"longitude": -3.6884121235090532
+		},
+		"organization": {
+			"organization-desc": "Fundado en 1867, el MAN se inauguró en 1895 en su actual sede, en el Palacio de Biblioteca y Museos, edificio proyectado por Francisco Jareño y terminado por Antonio Ruiz de Salces.  Metro: Serrano (línea 4), Retiro (línea 2)  Bus: 1, 9, 19, 51, 74  Cercanías Renfe: Recoletos (línea C1, C2, C7, C10 y Regional)  Bicimad: Estaciones 95 (calle Claudio Coello 109), 94 (paseo de Recoletos, 20), 107 (calle Serrano, 8), 106 a y b (calle Serrano, 34).  Aparcamiento: Colón (2), Plaza de Colón",
+			"accesibility": "1,6",
+			"schedule": "De martes a sábados de 9:30 a 20 horas. Domingos y festivos de 9:30 a 15 horas.   Cerrado   Todos los lunes del año. 1 y 6 de enero, 1 de mayo, 9 de noviembre, 24, 25 y 31 de diciembre.  Más información horarios.",
+			"services": "",
+			"organization-name": "Museo Arqueológico Nacional"
+		}
+	},
+	{
+		"@id": "https://datos.madrid.es/egob/catalogo/tipo/entidadesyorganismos/2072-museo-casa-moneda.json",
+		"@type": "https://datos.madrid.es/egob/kos/entidadesYorganismos/Museos",
+		"id": "2072",
+		"title": "Museo Casa de la Moneda",
+		"relation": "http://www.madrid.es/sites/v/index.jsp?vgnextchannel=bfa48ab43d6bb410VgnVCM100000171f5a0aRCRD&vgnextoid=12f8ef4d7f71c010VgnVCM1000000b205a0aRCRD",		
+		"address": {
+			"district": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Salamanca"
+			},
+			"area": {
+				"@id": "https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Salamanca/Barrio/Goya"
+			},
+			"locality": "MADRID",			
+			"postal-code": "28028",
+			"street-address": "CALLE DOCTOR ESQUERDO 36"
+		},
+		"location": {
+			"latitude": 40.42260021542579,
+			"longitude": -3.669139860245996
+		},
+		"organization": {
+			"organization-desc": "  Metro: O&amp;acute;Donnell (línea 6), Goya (líneas 2 y 4).  Bus: 143, 156, 2, 30, 56, 71, C2  Bicimad: Estación 101 (calle Jorge Juan, 131).",
+			"accesibility": "1,4",
+			"schedule": "De martes a viernes ininterrumpidamente de 10 a 20 horas. Sábados, domingos y festivos de 10 a 14 horas. Cerrado los lunes (incluidos festivos), y los días 1 y 6 de enero; 24, 25 y 31 de diciembre.",
+			"services": "",
+			"organization-name": "Museo Casa de la Moneda"
+		}
+	},
 	];
+    /*
         this.places = [
             {
                 id:1,
@@ -142,7 +380,7 @@ export default {
                 title: "Sitio de ocio B",
                 type: "biblioteca",
             },
-        ];
+        ];*/
         // this.places = gObject.places;
         // this.initMap();
     },
@@ -191,7 +429,7 @@ export default {
             if (typeof google !== 'undefined' && google.maps) {
                 this.map = new Map(document.getElementById('googlemap'), {
                     mapId: "844086867c78beb8",
-                    center: { lat: 40.30861111, lng: -3.68444444 },
+                    center: { lat: 40.41748651048573, lng: -3.703641635804624 },
                     zoom: 12
                 });
                 this.filteredPlaces = this.places;
@@ -202,7 +440,6 @@ export default {
         },
         buildContent(place) {
             const content = document.createElement("div");
-
             content.classList.add("place");
             content.innerHTML = `
     <div class="icon" border="1px solid black">
@@ -211,14 +448,10 @@ export default {
     </div>
     <div class="details">
         <div class="price">${place.title}</div>
-        <div class="address">${place.address}</div>
-        <div class="description">${place.description}</div>
+        <div class="address">${place.address.locality} - ${place.address['postal-code']} - ${place.address['street-address']}</div>
+       <!-- <div class="description">${place.organization['organization-desc']}</div>-->
         <div class="features">
-       <!-- <div>
-            <i aria-hidden="true" class="fa fa-bed fa-lg bed" title="bedroom"></i>
-            <span class="fa-sr-only">Precio</span>
-            <span>${place.price}</span>
-        </div>-->
+            <span></span>
         </div>
     </div>
     `;
@@ -233,11 +466,11 @@ export default {
                 markerView.zIndex = 1;
             }
         },
-        async addMarkers(mapa) {
+        async addMarkers() {
             const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
             const iconBase =
                 "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
-            const icons = {
+            /*const icons = {
                 parking: {
                     icon: iconBase + "parking_lot_maps.png",
                 },
@@ -247,14 +480,15 @@ export default {
                 info: {
                     icon: iconBase + "info-i_maps.png",
                 },
-            };
+            };*/
             const vm = this;
             //this.clearMarkers();
             for (const  place of this.filteredPlaces) {
+                const { latitude, longitude } = place.location;
+                const position = new google.maps.LatLng(latitude, longitude);
                 const content = this.buildContent(place);
                 const marker = new AdvancedMarkerElement({
-                    position: place.position,
-                    // icon: icons[place.type].icon,
+                    position: position,
                     map: this.map,
                     content: content,
                     title: place.description
@@ -273,7 +507,8 @@ export default {
             if (marker) {
                 this.map.panTo(marker.position); 
                 this.map.setZoom(14); 
-                this.toggleHighlight(marker)
+                this.toggleHighlight(marker);
+                window.scrollTo({ top: 0, behavior: 'smooth' })
             }  else {
         console.error("Marker not found for place with id:", place.id);
     }
@@ -297,7 +532,7 @@ export default {
             else{
             this.clearMarkers();
             this.addMarkers(this.map);
-            return this.places.filter(place => place.type === this.selectedFilter);
+            return this.places.filter(place => place.address['postal-code'] === this.selectedFilter);
     }
         }
     }
@@ -311,20 +546,19 @@ export default {
             <!-- Filters -->
             <select v-model="selectedFilter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="todos">Todos</option>
-                <option value="casa">Casa</option>
-                <option value="biblioteca">Bibliotecas</option>
+                <option v-for="code in uniquePostalCodes" :key="code" :value="code">{{ code }}</option>
             </select>
         </div>
         <table class="table-fixed border-separate border-spacing-2 border border-slate-500">
             <thead>
             <tr>
-            <th class="border border-slate-600">Título </th>
+            <th class="border border-slate-600">Lugar </th>
             <th class="border border-slate-600">Dirección</th>
             </tr>
         </thead>
-            <tr v-for="(place, index) in filteredPlaces" :key="index" @click="centerMapOnMarker(place)"  class=" hover:bg-sky-700">
+            <tr v-for="place in filteredPlaces" :key="place.id" @click="centerMapOnMarker(place)"  class=" hover:bg-sky-700">
                 <td class="border border-slate-700">{{ place.title }}</td>
-                <td class="border border-slate-700">{{ place.address }}</td>
+                <td class="border border-slate-700">{{place.address.locality}} - {{place.address['postal-code']}} - {{place.address['street-address']}}</td>
             </tr>
         </table>
     </div>

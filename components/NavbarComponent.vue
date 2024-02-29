@@ -85,12 +85,12 @@ const open = ref(false);
         </div>
       </nav>
       <div>
-        <div class="hidden lg:flex items-center gap-4">
+        <!--<div class="hidden lg:flex items-center gap-4">
           <Button>
           <a href="/login">Entrar</a>
-          <!-- <Link href="#" size="md">Sign up</Link> -->
+          - <Link href="#" size="md">Sign up</Link> 
         </Button>
-        </div>
+        </div>-->
       </div>
     </header>
   </ContainerComponent>

@@ -1,25 +1,24 @@
 <script setup>
-let props = withDefaults(defineProps<Props>(), {
-  configuration: () => ({}),
-});
+import { ref } from 'vue';
 
+const form = ref(null);
+const result = ref(null);
+/*
 onMounted(() => {
-  const form = document.getElementById("form");
-  const result = document.getElementById("result");
-
-  form.addEventListener("submit", function (e) {
+  form.value.addEventListener("submit", function (e) {
     e.preventDefault();
-    form.classList.add("was-validated");
-    if (!form.checkValidity()) {
-      form.querySelectorAll(":invalid")[0].focus();
+    form.value.classList.add("was-validated");
+    if (!form.value.checkValidity()) {
+      form.value.querySelectorAll(":invalid")[0].focus();
       return;
     }
-    const formData = new FormData(form);
+    const formData = new FormData(form.value);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
-    result.innerHTML = "Sending...";
-
+    result.value.innerHTML = "Sending...";
+    result.value.style.display = "block"; // Ensure result is visible
+/*
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
@@ -28,111 +27,45 @@ onMounted(() => {
       },
       body: json,
     })
-      .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
-          result.classList.add("text-green-500");
-          result.innerHTML = json.message;
-        } else {
-          console.log(response);
-          result.classList.add("text-red-500");
-          result.innerHTML = json.message;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        result.innerHTML = "Something went wrong!";
-      })
-      .then(function () {
-        form.reset();
-        form.classList.remove("was-validated");
-        setTimeout(() => {
-          result.style.display = "none";
-        }, 5000);
-      });
+    .then(async (response) => {
+      const jsonResponse = await response.json();
+      if (response.ok) {
+        result.value.classList.add("text-green-500");
+        result.value.innerHTML = jsonResponse.message;
+      } else {
+        console.error(response);
+        result.value.classList.add("text-red-500");
+        result.value.innerHTML = jsonResponse.message;
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      result.value.innerHTML = "Something went wrong!";
+    })
+    .finally(() => {
+      form.value.reset();
+      form.value.classList.remove("was-validated");
+      setTimeout(() => {
+        result.value.style.display = "none";
+      }, 5000);
+    });
   });
 });
+*/
 </script>
 
 <template>
-  <!-- To make this contact form work, create your free access key from https://web3forms.com/
-     Then you will get all form submissions in your email inbox. -->
   <form
-    action="https://api.web3forms.com/submit"
-    method="POST"
-    id="form"
-    class="needs-validation"
+    ref="form"
+    class="w-full max-w-sm"
     novalidate
   >
-    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
-    <!-- Create your free access key from https://web3forms.com/ -->
-    <input
-      type="checkbox"
-      class="hidden"
-      style="display: none"
-      name="botcheck"
-    />
-    <div class="mb-5">
-      <input
-        type="text"
-        placeholder="Full Name"
-        required
-        class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
-        name="name"
-      />
-      <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-        Please provide your full name.
-      </div>
-    </div>
-    <div class="mb-5">
-      <label for="email_address" class="sr-only">Email Address</label
-      ><input
-        id="email_address"
-        type="email"
-        placeholder="Email Address"
-        name="email"
-        required
-        class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
-      />
-      <div class="empty-feedback text-red-400 text-sm mt-1">
-        Please provide your email address.
-      </div>
-      <div class="invalid-feedback text-red-400 text-sm mt-1">
-        Please provide a valid email address.
-      </div>
-    </div>
-    <div class="mb-3">
-      <textarea
-        name="message"
-        required
-        placeholder="Your Message"
-        class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none h-36 focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
-      ></textarea>
-      <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-        Please enter your message.
-      </div>
-    </div>
-    <Button type="submit" size="lg" block>Send Message</Button>
-    <div id="result" class="mt-3 text-center"></div>
+  <textarea class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Escribe tu feedback aquí..."></textarea>
+    <Button type="submit" size="lg" block>Enviar</Button>
+    <div ref="result" class="mt-3 text-center"></div>
   </form>
 </template>
 
 <style>
-.invalid-feedback,
-.empty-feedback {
-  display: none;
-}
-
-.was-validated :placeholder-shown:invalid ~ .empty-feedback {
-  display: block;
-}
-
-.was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
-  display: block;
-}
-
-.is-invalid,
-.was-validated :invalid {
-  border-color: #dc3545;
-}
+/* Your CSS remains unchanged */
 </style>

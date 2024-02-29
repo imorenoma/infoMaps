@@ -1,13 +1,11 @@
 <script setup>
 
-const TeamImg1 = "https://source.unsplash.com/IF9TK5Uy-KI";
-const TeamImg2 = "https://source.unsplash.com/iEEBWgY_6lA";
-const TeamImg3 = "https://source.unsplash.com/ZHvM3XIOHoE";
-
-const team = [
+import TeamImg1 from '@/assets/img/team-img1.jpg';
+import TeamImg2 from '@/assets/img/team-img2.jpg';
+import TeamImg3 from '@/assets/img/team-img3.jpg';const team = [
   {
-    name: "Personaje 1",
-    title: "Namber uan",
+    name: "Álvaro Salinas",
+    title: "Desarrolador Front-end",
     avatar: {
       src: TeamImg1,
       width: 480,
@@ -15,8 +13,8 @@ const team = [
     },
   },
   {
-    name: "Personaje 2",
-    title: "Namber tchu",
+    name: "Iván Moreno",
+    title: "Desarrollador Back-end",
     avatar: {
       src: TeamImg2,
       width: 580,
@@ -24,8 +22,8 @@ const team = [
     },
   },
   {
-    name: "Personaje 3",
-    title: "Namber zri",
+    name: "Ernest",
+    title: "Experto en GIS",
     avatar: {
       src: TeamImg3,
       width: 580,
@@ -45,12 +43,11 @@ const team = [
 
     <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
       <h2 class="font-bold text-3xl text-gray-800">
-        Empowering the world with Nuxt.
+        Nuestro objetivo es que nadie se quede en casa en sus días libres.
       </h2>
       <p class="text-lg leading-relaxed text-slate-500">
-        We're a multi-cultural team from around the world! We come from diverse
-        backgrounds, bringing different personalities, experiences and skills to
-        the job. This is what makes our team so special.
+        Somos un equipo con una gran variedad de experiencias y perfiles. 
+       . Esto es lo que hace que nuestro equipo sea tan especial.
       </p>
     </div>
     <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
@@ -91,5 +88,6 @@ const team = [
         ))
       } -->
     </div>
+    <CtaComponent></CtaComponent>  
   </ContainerComponent>
 </template>
