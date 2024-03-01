@@ -34,8 +34,11 @@ export default {
     },
     },
     async created() {
-        //const gResponse = await fetch("http://localhost:5000/citysights");
-        // const gObject = await gResponse.json();
+        const gResponseMuseos = await fetch("https://citysights.ew.r.appspot.com/get-madrid-museum-data", {
+            mode: 'no-cors'});
+        const gObjectMuseos = await gResponseMuseos;
+        const gResponseMonuments = await fetch("https://citysights.ew.r.appspot.com/monuments");
+        const gObjectMonuments = await gResponseMuseos.json();
         this.google_maps_url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC-xhrnV-K304RreVro53FFhm6KIjKw3rY";
      //  this.places = await fetch("http://localhost:5000/get-madrid-museum-data");
          this.places =  [
@@ -360,35 +363,9 @@ export default {
 		}
 	},
 	];
-    /*
-        this.places = [
-            {
-                id:1,
-                address: "Otra calle de getafe",
-                description: "Un sitio muy divertido",
-                price: "Gratis",
-                position: { lat: 40.294133014703085, lng: -3.74623766502045 },
-                title: "Sitio de ocio A",
-                type: "casa",
-            },
-            {
-                id:2,
-                address: "Calle Getafe algo",
-                description: "Un sitio poco divertido",
-                price: "$$",
-                position: { lat: 40.29788054770768, lng: -3.741920123159409 },
-                title: "Sitio de ocio B",
-                type: "biblioteca",
-            },
-        ];*/
-        // this.places = gObject.places;
-        // this.initMap();
     },
     async mounted() {
-
-
         await this.initGoogleMaps();
-
     },
     methods: {
         async initGoogleMaps() {
@@ -448,7 +425,8 @@ export default {
     </div>
     <div class="details">
         <div class="price">${place.title}</div>
-        <div class="address">${place.address.locality} - ${place.address['postal-code']} - ${place.address['street-address']}</div>
+        <div class="address">${place.address}</div>
+        <!--<div class="address">${place.address.locality} - ${place.address['postal-code']} - ${place.address['street-address']}</div>-->
        <!-- <div class="description">${place.organization['organization-desc']}</div>-->
         <div class="features">
             <span></span>
@@ -468,21 +446,8 @@ export default {
         },
         async addMarkers() {
             const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-            const iconBase =
-                "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
-            /*const icons = {
-                parking: {
-                    icon: iconBase + "parking_lot_maps.png",
-                },
-                library: {
-                    icon: iconBase + "library_maps.png",
-                },
-                info: {
-                    icon: iconBase + "info-i_maps.png",
-                },
-            };*/
+            const iconBase = "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
             const vm = this;
-            //this.clearMarkers();
             for (const  place of this.filteredPlaces) {
                 const { latitude, longitude } = place.location;
                 const position = new google.maps.LatLng(latitude, longitude);
@@ -510,7 +475,7 @@ export default {
                 this.toggleHighlight(marker);
                 window.scrollTo({ top: 0, behavior: 'smooth' })
             }  else {
-        console.error("Marker not found for place with id:", place.id);
+        console.error("No se encontro un marcador con el id:", place.id);
     }
         },
         clearMarkers() {
@@ -565,11 +530,7 @@ export default {
 </template>
 
 <style>
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
+
 :root {
     --building-color: #FF9800;
     --house-color: #0288D1;
@@ -577,9 +538,6 @@ export default {
     --warehouse-color: #558B2F;
 }
 
-/*
- * Optional: Makes the sample page fill the window.
- */
 html,
 body {
     height: 100%;
@@ -587,18 +545,12 @@ body {
     padding: 0;
 }
 
-/*
- * Always set the map height explicitly to define the size of the div element
- * that contains the map.
- */
 #map {
     height: 100%;
     width: 100%;
 }
 
-/*
- * Property styles in unhighlighted state.
- */
+
 .place {
     align-items: center;
     background-color: #FFFFFF;

@@ -3,7 +3,7 @@
 
 ## Index
 
-1. [About App](#aboutApp)
+1. [Sobre la app](#aboutApp)
 2. [Requeriments](#requeriments)
 3. [How to run App](#runApp)
 4. [App Schema](#schema)
@@ -11,35 +11,38 @@
 6. [Resources](#resources)
 ---
 
-## About the App <a name= "aboutApp"></a>
+## Sobre la app <a name= "aboutApp"></a>
 
-This web App use a map and different filters to show info about some places as restaurants
-or monuments using google maps
+Un aplicación web para ver información sobre diferentes puntos de interés y ocio en una ciudad.
 
 ---
 
-## Requeriments <a name= "requeriments"></a>
-- NodeJS v10.x or higher
+## Requisitos <a name= "requeriments"></a>
+- NodeJS v10.x o más
 - Vue3
-- javascript
 - Dockers
-- HTML 5
-- nuxt 3
+- Nuxt 3
 
-To install all dependencies we recomended the next command:
+Para instalar las dependencias:
 
-```bash
-pip install requeriments.txt
-```
----
+npm install pnpm -g 
 
-## How to run App <a name="runApp"></a>
+pnpm add nuxt -g
 
-npm run dev
+pnpm install
 
 
----
-## App Schema <a name = "schema"> </a>
+
+## Como arrancar la aplicación App <a name="runApp"></a>
+
+Para desplegar servidor de desarrollo:
+pnpm dev 
+
+Para compilar el proyecto:
+
+pnpm build
+
+## Esquema de la aplicación <a name = "schema"> </a>
 
 
 ---
@@ -51,12 +54,8 @@ npm run dev
 
 ## Resources  <a name = "resources"> </a>
 
-1. Google Maps
-2. [Leaflet](https://leafletjs.com/)
-3. Apigee
-4. GKE
-5. Cloud Build?
-6. BigQuery? BigTable?
-7. [Open Data Comunidad de Madrid](https://datos.madrid.es/portal/site/egob/menuitem.9e1e2f6404558187cf35cf3584f1a5a0/?vgnextoid=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default)
-8. [Tripadvidor API](https://www.tripadvisor.com/developers)
+ Google Maps
+
+ 
+ [Open Data Comunidad de Madrid](https://datos.madrid.es/portal/site/egob/menuitem.9e1e2f6404558187cf35cf3584f1a5a0/?vgnextoid=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default)
 
